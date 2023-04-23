@@ -1,5 +1,6 @@
 package manage;
 
+import models.Board;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Rectangle;
 import org.openqa.selenium.WebDriver;
@@ -12,11 +13,14 @@ public class BoardHelper extends HelperBase{
     }
     public void initBoardCreationFromHeader() {
         click(By.cssSelector("[data-testid='header-create-menu-button']"));
-        click(By.cssSelector("[aria-label='BoardIcon']")); //[data-testid='header-create-board-button']
+        click(By.cssSelector("[data-testid='header-create-board-button']")); //[data-testid='header-create-board-button']
     }
 
     public void fillInBoardCreationForm(String title) {
         type(By.cssSelector("[data-testid='create-board-title-input']"),title);
+    }
+    public void fillInBoardCreationForm(Board board) {
+        type(By.cssSelector("[data-testid='create-board-title-input']"),board.getTitle());
     }
 
     public void submitBoardCreation() {
@@ -34,5 +38,8 @@ public class BoardHelper extends HelperBase{
     public boolean isCreated() {
         return wd.findElements(By.cssSelector(".list-name-input")).size()>0;
 
+    }
+    public void returnToHomePage() {
+        click(By.cssSelector(".qsCZSrobO7JoSv"));
     }
 }
